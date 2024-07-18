@@ -1,0 +1,49 @@
+<idea-plugin>
+	<id>si.vegamind.ftccompanion</id>
+	<name>FTC Companion</name>
+	<vendor email="info@firstglobal.si" url="https://github.com/vegamind">VegaMind #22903</vendor>
+	<description>An FTC companion plugin for Android Studio</description>
+	<change-notes>
+		- FTC Companion released
+	</change-notes>
+
+	<depends>com.intellij.modules.platform</depends>
+	<depends>com.intellij.modules.java</depends>
+
+	<extensions defaultExtensionNs="com.intellij">
+		<toolWindow
+				id="Robot controller console"
+				icon="AllIcons.Actions.InlayRenameInComments"
+				anchor="right"
+				factoryClass="si.vegamind.ftccompanion.extensions.toolwindow.ControllerConsoleFactory"
+		/>
+		<projectService
+				serviceImplementation="si.vegamind.ftccompanion.extensions.settings.AppSettings"/>
+		<projectConfigurable
+				parentId="tools"
+				instance="si.vegamind.ftccompanion.extensions.settings.AppSettingsConfigurable"
+				id="si.vegamind.ftccompanion.extensions.settings.AppSettingsConfigurable"
+				displayName="FTC Companion"
+		/>
+	</extensions>
+
+	<actions>
+		<action
+				id="si.vegamind.ftccompanion.actions.filetree.NewTeleOp"
+				class="si.vegamind.ftccompanion.actions.filetree.NewTeleOp"
+				text="New TeleOp"
+				description="Creates a new TeleOp OpMode class"
+				icon="AllIcons.Actions.GroupByModule">
+			<add-to-group group-id="NewGroup" anchor="last"/>
+		</action>
+
+		<action
+				id="si.vegamind.ftccompanion.actions.filetree.NewAutonomous"
+				class="si.vegamind.ftccompanion.actions.filetree.NewAutonomous"
+				text="New Autonomous"
+				description="Creates a new Autonomous OpMode class"
+				icon="AllIcons.Actions.GroupByModule">
+			<add-to-group group-id="NewGroup" anchor="last"/>
+		</action>
+	</actions>
+</idea-plugin>
