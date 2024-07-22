@@ -37,9 +37,15 @@ tasks {
     }
 
     signPlugin {
-        certificateChainFile.set(file(providers.environmentVariable("CERTIFICATE_CHAIN_PATH")))
-        privateKeyFile.set(file(providers.environmentVariable("PRIVATE_KEY_PATH")))
-        password.set(providers.environmentVariable("PRIVATE_KEY_PASSWORD"))
+        val certChainEnv = providers.environmentVariable("CERTIFICATE_CHAIN_PATH")
+        val privateKeyEnv = providers.environmentVariable("PRIVATE_KEY_PATH")
+        val keyPassEnv = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
+
+        if (certChainEnv.isPresent && privateKeyEnv.isPresent && keyPassEnv.isPresent) {
+            certificateChainFile.set(file(certChainEnv))
+            privateKeyFile.set(file(privateKeyEnv))
+            password.set(keyPassEnv)
+        }
     }
 
     publishPlugin {
