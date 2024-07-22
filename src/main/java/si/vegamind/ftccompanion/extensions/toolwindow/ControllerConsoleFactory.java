@@ -1,7 +1,10 @@
 package si.vegamind.ftccompanion.extensions.toolwindow;
 
 import com.intellij.icons.AllIcons;
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
+import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.Messages;
@@ -15,6 +18,7 @@ import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 import com.intellij.ui.table.JBTable;
 import com.intellij.util.ui.FormBuilder;
+import org.jetbrains.annotations.NotNull;
 import si.vegamind.ftccompanion.extensions.settings.AppSettings;
 import si.vegamind.ftccompanion.models.FtcAsset;
 import si.vegamind.ftccompanion.models.RcInfo;
@@ -45,7 +49,7 @@ public class ControllerConsoleFactory implements ToolWindowFactory {
 
 		AnActionButton connectButton = new AnActionButton("Connect to Control Hub", null, AllIcons.Actions.Execute) {
 			@Override
-			public void actionPerformed(AnActionEvent e) {
+			public void actionPerformed(@NotNull AnActionEvent e) {
 				if(!connected) {
 					RcInfo rcInfo = RcInfoService.getRcInfo(settings.robotIp);
 
@@ -66,6 +70,11 @@ public class ControllerConsoleFactory implements ToolWindowFactory {
 					e.getPresentation().setIcon(AllIcons.Actions.Execute);
 					connected = false;
 				}
+			}
+
+			@Override
+			public @NotNull ActionUpdateThread getActionUpdateThread() {
+				return ActionUpdateThread.EDT;
 			}
 		};
 
@@ -178,13 +187,24 @@ public class ControllerConsoleFactory implements ToolWindowFactory {
 					refreshTable.run();
 				})
 				.setEditActionName("Rename")
-				.addExtraAction(new AnActionButton("Download", null, AllIcons.Actions.Download) {
+				.addExtraAction(new AnAction("Download", null, AllIcons.Actions.Download) {
 					@Override
-					public void actionPerformed(AnActionEvent e) {
+					public void actionPerformed(@NotNull AnActionEvent e) {
 						// TODO: Disable button when no row selected rather than performing a check, just like remove and rename buttons (help needed)
 						if(assetsTable.getSelectedRow() != -1) {
 							selectAndDownloadAsset(fmname, model.getAssets()[assetsTable.getSelectedRow()]);
 						}
+					}
+
+					@Override
+					public void update(@NotNull AnActionEvent e) {
+						Presentation presentation = e.getPresentation();
+						presentation.setEnabled(assetsTable.getSelectedRow() != -1);
+					}
+
+					@Override
+					public @NotNull ActionUpdateThread getActionUpdateThread() {
+						return ActionUpdateThread.EDT;
 					}
 				});
 
