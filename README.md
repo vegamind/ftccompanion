@@ -18,7 +18,7 @@
 <img src="assets/screenshots/screenshot.png" />
 
 ## 📄 Docs
-Refer to the [Wiki Section][wiki-url].
+Refer to the [Website][wiki-url].
 
 ## 📦 Download
 [<img src="./assets/marketplace.png" width="250"/>](https://plugins.jetbrains.com/plugin/24888-ftc-companion)
@@ -36,7 +36,7 @@ as well as Autonomous boilerplate generation.
 
 ### Robot controller console
 Built in robot console allow for managing settings you would otherwise have to on the robot's web interface. It includes
-Wi-Fi management, sounds manager, TensorFlow model manager and so on.
+Wi-Fi management, sounds manager and so on.
 
 <p align="center" float="left">
     <img src="./assets/screenshots/console.png">
@@ -47,8 +47,6 @@ Wi-Fi management, sounds manager, TensorFlow model manager and so on.
 ## 📜 License
 This software is licensed under the [GPL-3.0 license][license-url]
 
-###### Made with ❤️ by [VegaMind #22903](https://github.com/vegamind)
-
 [contributors-shield]: https://img.shields.io/github/contributors/vegamind/ftccompanion.svg?style=for-the-badge
 [forks-shield]: https://img.shields.io/github/forks/vegamind/ftccompanion.svg?style=for-the-badge
 [stars-shield]: https://img.shields.io/github/stars/vegamind/ftccompanion.svg?style=for-the-badge
@@ -58,7 +56,7 @@ This software is licensed under the [GPL-3.0 license][license-url]
 [contributors-url]: https://github.com/vegamind/ftccompanion/graphs/contributors
 [forks-url]: https://github.com/vegamind/ftccompanion/network/members
 [stars-url]: https://github.com/vegamind/ftccompanion/stargazers
-[issues-url]: https://github.com/vegamind/ftccompanion/issues
+[issues-url]: https://firsttech.si/docs/ftccompanion/
 [license-url]: https://github.com/vegamind/ftccompanion/blob/master/LICENSE
 [wiki-url]: https://github.com/vegamind/ftccompanion/wiki
 [releases-url]: https://github.com/vegamind/ftccompanion/releases
