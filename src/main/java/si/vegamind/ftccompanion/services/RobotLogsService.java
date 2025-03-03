@@ -1,6 +1,5 @@
 package si.vegamind.ftccompanion.services;
 
-import com.intellij.history.core.Paths;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -18,7 +17,7 @@ public class RobotLogsService {
 		String[] allLogs = WebUtils.get("http://" + robotIp + ":8080/listLogs", String[].class);
 
 		for(String log : allLogs) {
-			try(FileOutputStream fos = new FileOutputStream(Paths.appended(logsFolder.getPath(), log));
+			try(FileOutputStream fos = new FileOutputStream(new File(logsFolder.getPath(), log));
 				CloseableHttpClient httpClient = HttpClients.createDefault()
 			) {
 				HttpGet request = new HttpGet("http://" + robotIp + ":8080/downloadFile?name=" + log);
