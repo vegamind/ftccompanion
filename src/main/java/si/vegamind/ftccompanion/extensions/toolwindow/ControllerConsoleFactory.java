@@ -60,7 +60,6 @@ public class ControllerConsoleFactory implements ToolWindowFactory {
 
 					contentManager.addContent(contentFactory.createContent(createMainLayout(rcInfo), "Manage", false));
 					contentManager.addContent(contentFactory.createContent(createAssetsTable("SOUNDS"), "Sounds", false));
-					contentManager.addContent(contentFactory.createContent(createAssetsTable("MODELS"), "TensorFlow", false));
 
 					e.getPresentation().setIcon(AllIcons.Actions.Suspend);
 					connected = true;
